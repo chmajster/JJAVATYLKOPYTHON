@@ -20,6 +20,9 @@ public class PatientEntity {
 	private String lastName;
 
 	@Column(nullable = false)
+	private Integer age;
+
+	@Column(nullable = false)
 	private String telephoneNumber;
 
 	private String email;
@@ -35,8 +38,8 @@ public class PatientEntity {
 	@JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
 	private AddressEntity address;
 
-	//relacja jednostronna od strony rodzica
-	@OneToMany(cascade = CascadeType.ALL)
+	// relacja dwustronna
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "patient")
 	private Set<VisitEntity> visitEntities;
 
 	public Long getId() {
@@ -61,6 +64,14 @@ public class PatientEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
 	}
 
 	public String getTelephoneNumber() {

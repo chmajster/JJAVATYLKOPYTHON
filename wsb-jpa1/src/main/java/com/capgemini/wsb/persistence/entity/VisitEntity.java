@@ -18,6 +18,22 @@ public class VisitEntity {
 	@Column(nullable = false)
 	private LocalDateTime time;
 
+	@Column(name = "patient_id")
+	private Long patientId;
+
+	// relacja dwustronna
+	@ManyToOne
+	@JoinColumn(name="patient_id", nullable=false, insertable = false, updatable = false)
+	private PatientEntity patient;
+
+	@Column(name = "doctor_id")
+	private Long doctorId;
+
+	// relacja dwustronna
+	@ManyToOne
+	@JoinColumn(name="doctor_id", nullable=false, insertable = false, updatable = false)
+	private DoctorEntity doctor;
+
 	//relacja jednostronna od strony rodzica
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<MedicalTreatmentEntity> medicalTreatmentEntities;
@@ -44,6 +60,38 @@ public class VisitEntity {
 
 	public void setTime(LocalDateTime time) {
 		this.time = time;
+	}
+
+	public Long getPatientId() {
+		return patientId;
+	}
+
+	public void setPatientId(Long patientId) {
+		this.patientId = patientId;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public Long getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(Long doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public DoctorEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(DoctorEntity doctor) {
+		this.doctor = doctor;
 	}
 
 	public Set<MedicalTreatmentEntity> getMedicalTreatmentEntities() {

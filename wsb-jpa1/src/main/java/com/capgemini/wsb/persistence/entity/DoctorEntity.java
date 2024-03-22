@@ -36,8 +36,8 @@ public class DoctorEntity {
 	@JoinColumn(name = "address_id", referencedColumnName = "id", nullable = false)
 	private AddressEntity address;
 
-	//relacja jednostronna od strony rodzica
-	@OneToMany(cascade = CascadeType.ALL)
+	// relacja dwustronna
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "doctor")
 	private Set<VisitEntity> visitEntities;
 
 	public Long getId() {
