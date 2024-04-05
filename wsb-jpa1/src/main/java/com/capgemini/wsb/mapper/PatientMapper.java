@@ -19,7 +19,7 @@ public final class PatientMapper {
         final PatientTO patientTO = new PatientTO();
         final AddressTO addressTO = AddressMapper.mapToTO(patientEntity.getAddress());
         final Set<VisitTO> visitTOList= patientEntity.getVisitEntities().stream()
-                        .map(visitEntity -> VisitMapper.mapToTO(visitEntity))
+                        .map(VisitMapper::mapToTO)
                         .collect(Collectors.toSet());
         patientTO.setId(patientEntity.getId());
         patientTO.setFirstName(patientEntity.getFirstName());

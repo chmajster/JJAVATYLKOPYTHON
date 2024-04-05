@@ -1,8 +1,14 @@
 package com.capgemini.wsb.service;
 
 import com.capgemini.wsb.dto.PatientTO;
+import com.capgemini.wsb.dto.VisitTO;
+
+import java.util.List;
 
 public interface PatientService {
-    public PatientTO findById(Long id);
-    public void deleteById(Long id);
+    PatientTO findById(Long id);
+    void deleteById(Long id);
+
+    List<PatientTO> findAllByLastname(String lastname);
+    List<VisitTO> findVisitsByPatientId(Long patientId);
 }

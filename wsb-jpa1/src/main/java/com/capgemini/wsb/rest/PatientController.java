@@ -5,6 +5,8 @@ import com.capgemini.wsb.rest.exception.EntityNotFoundException;
 import com.capgemini.wsb.service.PatientService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/patient")
 public class PatientController {

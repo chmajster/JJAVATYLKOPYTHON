@@ -8,7 +8,6 @@ import com.capgemini.wsb.mapper.DoctorMapper;
 import com.capgemini.wsb.mapper.VisitMapper;
 import com.capgemini.wsb.persistence.dao.DoctorDao;
 import com.capgemini.wsb.persistence.dao.VisitDao;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -81,6 +79,18 @@ class PatientServiceTest {
         assertThat(patient).isNull();
         assertThat(visitTOList.size()).isEqualTo(0);
         assertThat(doctorTOList.size()).isEqualTo(2);
+    }
+
+    @Transactional
+    @Test
+    void shouldFindVisitsByPatientId() {
+        // given
+        // when
+        final List<VisitTO> visitTOList = patientService.findVisitsByPatientId(1L);
+
+        // then
+        assertThat(visitTOList).isNotNull();
+        assertThat(visitTOList.size()).isEqualTo(2);
     }
 
 }
